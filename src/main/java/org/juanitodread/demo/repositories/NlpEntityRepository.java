@@ -1,6 +1,7 @@
 package org.juanitodread.demo.repositories;
 
 import org.juanitodread.demo.dtos.NlpEntity;
+import org.postgresql.util.PGobject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,8 @@ public class NlpEntityRepository extends JdbcDaoSupport {
             entity.setName((String) row.getOrDefault("name", ""));
             entity.setType((String) row.getOrDefault("type", ""));
             entity.setEnabled((Boolean) row.getOrDefault("enabled", false));
-            entity.setDefinition(row.getOrDefault("definition", "{}"));
+            var json = (PGobject) row.getOrDefault("definition", "");
+            entity.setDefinition(json.getValue());
             entity.setCreated((Timestamp) row.getOrDefault("created_time", ""));
             entity.setUpdated((Timestamp) row.getOrDefault("updated_time", ""));
 

@@ -1,5 +1,7 @@
 package org.juanitodread.demo.dtos;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -9,7 +11,8 @@ public class NlpEntity implements Serializable {
     private String name;
     private String type;
     private boolean enabled;
-    private Object definition;
+    @JsonRawValue
+    private String definition;
     private Timestamp created;
     private Timestamp updated;
 
@@ -17,7 +20,7 @@ public class NlpEntity implements Serializable {
     public NlpEntity() {
     }
 
-    public NlpEntity(UUID uuid, String name, String type, boolean enabled, Object definition) {
+    public NlpEntity(UUID uuid, String name, String type, boolean enabled, String definition) {
         this.uuid = uuid;
         this.name = name;
         this.type = type;
@@ -25,7 +28,7 @@ public class NlpEntity implements Serializable {
         this.definition = definition;
     }
 
-    public NlpEntity(UUID uuid, String name, String type, boolean enabled, Object definition, Timestamp created, Timestamp updated) {
+    public NlpEntity(UUID uuid, String name, String type, boolean enabled, String definition, Timestamp created, Timestamp updated) {
         this.uuid = uuid;
         this.name = name;
         this.type = type;
@@ -67,11 +70,11 @@ public class NlpEntity implements Serializable {
         this.enabled = enabled;
     }
 
-    public Object getDefinition() {
+    public String getDefinition() {
         return definition;
     }
 
-    public void setDefinition(Object definition) {
+    public void setDefinition(String definition) {
         this.definition = definition;
     }
 
